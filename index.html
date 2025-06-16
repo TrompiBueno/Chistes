@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Generador de Chistes</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 50px;
+        background-color: #f0f0f0;
+      }
+      #quote {
+        font-size: 1.5em;
+        margin: 30px 0;
+        color: #333;
+        min-height: 3em;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 1em;
+        cursor: pointer;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Generador de chistes</h1>
+    <div id="quote">
+      Hola Adrián, este año hemos aprendido un montón contigo, tanto en el
+      ámbito histórico como en la vida. Te quiero agradecer todo lo que nos has
+      enseñado, y por esto aquí tienes un botón de más de 100 chistes. Espero que
+      lo disfrutes - Miguel 2ºB
+    </div>
+    <button onclick="showQuote()">Generar chiste</button>
+
+    <script>
+      const quotes = [
+        "¿Qué le dice un pez a otro pez? ¡Nada!",
+        "¿Qué le dice un techo a otro? Techo de menos.",
+        "¿Qué hace una abeja en el gimnasio? ¡Zum-ba!",
+        "¿Qué le dice un gusano a otro? ¡Vamos a dar una vuelta a la manzana!",
+        "¿Cómo se despiden los químicos? Ácido un placer.",
+        "¿Por qué el libro de matemáticas está triste? Porque tiene muchos problemas.",
+        "¿Cuál es el colmo de Aladdín? Tener mal genio.",
+        "¿Qué hace un perro con un taladro? Taladrando.",
+        "¿Cómo maldice un pollito a otro? ¡Caldito seas!",
+        "¿Qué le dice un jardinero a otro? ¡Disfrutemos mientras podamos!",
+        "¿Qué le dice un semáforo a otro? No me mires que me pongo rojo",
+        "¿Qué hace un pato sin pata? No se si cojea o está soltero...",
+        "¿Por qué los gatos usan computadoras? Para cazar ratones.",
+        "¿Qué le dice un huevo a una sartén? ¡Me tienes frito!",
+        "¿Qué le dice el 2 al 0? Veinte conmigo.",
+        "¿Qué le dice una piedra a otra? La vida es dura.",
+        "¿Qué le dice el uno al diez? Para ser como yo tienes que ser sin-cero.",
+        "¿Por qué el calendario está triste? Porque sus días están contados.",
+        "¿Cuál es el colmo de un jardinero? Quedarse plantado.",
+        "¿Qué le dice una taza a otra? ¿Qué taza-ciendo?",
+        "¿Qué le dice un jaguar a otro jaguar? Jaguar you.",
+        "¿Qué le dice una iguana a su hermana gemela? ¡Somos iguanitas!",
+        "¿Cuál es el colmo de un calvo? No poder tirarse de los pelos cuando se enfada.",
+        "¿Cuál es el colmo de un constructor? Que se llame Armando Paredes.",
+        "¿Cuál es el colmo de un peluquero? Perder el tren por los pelos.",
+        "¿Cuál es la montaña más limpia? El volcán. Porque primero echa cenizas y después, lava.",
+        "¿Cuál es el colmo de un tuerto? Llamarse Casimiro.",
+        "¿De dónde vienen los hámsters? De Hamsterdam.",
+        "¿Cuál es el colmo de un oculista? Vivir en el noveno B.",
+        "Me encantan los mensajes de voz. — Yo los detesto. — Sí, esos también molan.",
+        "¿Qué hace un mudo bailando? — Una mudanza.",
+        "Hola, busco trabajo. — ¿Le interesa de jardinero? — ¿Dejar dinero? ¡Si lo que busco es trabajo!",
+        "¿Qué tal tu primer día de parkour? — De futa madfre.",
+        "Me acabo de tirar un pedo de esos silenciosos, ¿qué hago? — Ahora nada, pero cuando llegues a casa, cámbiale las pilas al audífono.",
+        "Buenas, quería una camiseta de un personaje inspirador. — Ghandi? — No, mediani.",
+        "¿Sabes por qué no se puede discutir con un DJ? — Porque siempre están cambiando de tema.",
+        "¿Cuál es el animal más peligroso de Internet? — El mouse-tro.",
+        "Papá, ¿qué se siente tener un hijo tan guapo? — No sé hijo, pregúntale a tu abuelo...",
+        "¿Por qué las focas del circo miran siempre hacia arriba? — Porque es donde están los focos.",
+        "Cariño, estás obsesionado con el fútbol y me haces falta. — ¿Qué dices? ¿Cómo que falta? ¡Pero si ni te he tocado!",
+        "No sé si conseguiré enamorar a esa chica. — ¿Tienes vacas y ovejas? — Sí. — Pues ya tienes mucho ganado.",
+        "Una pera esperando el autobús. Llega una manzana y le pregunta: — ¿Hace mucho que espera? — Uy sí, desde que era pequeñita.",
+        "¿Por qué los patos no se pueden amar? - Porque es un amor patónico",
+        "Mi profesora de arquitectura se llama Pilar - La mía Capitel",
+        "¡Hay cinco carabelas en el horizonte! - ¿Una flota? - No, flotan todas",
+        "Alejandro Mango, una gran figura, invadió muchos paises y se casó 5 veces - ¡Claro, era un conquistador!",
+        "Dos cazadores están en el bosque cuando uno de ellos se desmaya. No parece estar respirando y sus ojos están vidriosos. El otro hombre agarra el teléfono y llama al servicio de emergencias. Dice jadeando al operador: ¡Mi amigo está muerto! ¿Qué puedo hacer? El operador con un tono de voz calmado y suave le responde: Tómelo con calma, puedo ayudar. Primero, vamos a asegurarnos que está muerto. Se hace un silencio, luego se escucha un disparo. De regreso al teléfono, el cazador dice: Y, ¿ahora qué?",
+        "Había un niño muy tonto muy tonto al que un día su madre le dijo: Hijo, comete la sopa de fideos. Y él le respondió: Peroooo... entonces Fideos se quedará sin sopa",
+        "Mamá, te quiero mucho - Yo también pero díselo a tu padre para que se ponga contento. - ¡Papá! Quiero mucho a Mamá",
+        "Qué le dice una silla con dinero a una silla pobre: Pobre-cilla",
+        "¿Dónde se cortan el pelo los perros? - El la perruquería",
+        "Oye.. ¿Sabes como se llaman los habitantes de Nueva York? - Hombre, pues no todos",
+        "La mayor exportación de Australia son los boomerangs. También son la mayor importación.",
+        "Van dos ciegos y le dice uno al otro: — Ojalá lloviera. — Ojalá yo también.",
+        "¿Qué pasa si tiras un pato al agua? Nada.",
+        "¿Cuál es el animal más antiguo? La cebra, porque está en blanco y negro.",
+        "¿Qué es un pez en un cine? ¡Un mero espectador!",
+        "¿Por qué el libro de historia está siempre deprimido? Porque tiene un pasado muy oscuro.",
+        "¿Cómo se llama el hermano vegetariano de Bruce Lee? Broco Lee.",
+        "Mi nuevo diccionario de sinónimos es malísimo. No solo eso, también es malísimo y muy malo.",
+        "– Oiga, ¿es la embajada de Laos? – Sí. – Pues mándenme uno de fresa.",  
+        "– ¡Abordar el barco! Y el barco quedó precioso.",
+        "– ¿Domina usted el inglés? – Hombre, si es bajito y se deja…",  
+        "— ¡Doctor, doctor, tengo un hueso fuera! — Hágalo pasar, por favor.",  
+        "— Papá, ¿qué está más lejos, Córdoba o la Luna? — Pero vamos a ver niño, ¿tú ves desde aquí Córdoba?",  
+        "— ¡Camarero! Este filete tiene muchos nervios. — Normal, es que es la primera vez que se lo comen.",  
+        "— ¡Estás obsesionado con la comida! — No sé a qué te refieres croquetamente.",  
+        "— Mamá, mi hermano está malo. — Pues apártalo y cómete solo las patatas.",   
+        "— Oye, ¿cuál es tu plato favorito? — Pues el hondo, porque cabe más comida…", 
+        "¿Cómo se llama la hija de Thor? La thorrija.",  
+        "¿Y cuál es la colonia de Superman? Pues superfume.",  
+        "– Pepito, si en esta mano tengo 8 naranjas y en esta otra 6 naranjas, ¿qué tengo? – ¡Unas manos enormes, profe!",
+        "– ¿Está Agustín? – No, estoy incomodín",   
+        "Se sube un señor al autobús y le pregunta al conductor: — ¿Cuánto vale el bus? — Un euro. — Pues que se bajen todo el mundo, que me lo quedo.", 
+        "— Mi capitán, hemos perdido la batalla. — ¡Pues buscadla inmediatamente!",  
+        "– Mamá, ¿me haces un bocadillo de jamón, por favor? – ¿York? – Sí, turk.",
+        "¿Cuál es el animal que tiene más dientes? ¡El ratoncito Pérez!",
+        "— Doctor, sin rodeos, dígame la verdad, ¿tengo problemas de memoria? — ¡Que sííííííí...!",
+        "— Te sabes el chiste del electricista? — No. — Pues tiene mucha chispa.",
+        "— Hombre, Pepe, cómo has cambiado. — Yo no soy Pepe. — Pues más a mi favor.",
+        "— ¿Sabes? Hoy me he comprado una paloma que cuesta diez mil euros. — ¿Mensajera? — No no, no te exagero nada.",
+        "¿Cuáles eran los personajes de dibujos animados favoritos del capitán del Titanic? Timón y Pumba.",
+        "— ¡Me acaba de picar una serpiente! — ¿Cobra? — No, gratis.",
+        "¿Qué hace un pez mago? Nada por aquí, nada por allá.",
+        "— Jaimito, sal del coche y mira si funciona el intermitente. — Ahora sí, ahora no, ahora sí, ahora no…",
+        "– Papá, ¿regañarías a un niño que no haya hecho nada? – Por supuesto que no, Jaimito. – ¡Menos mal! ¡Porque hoy no he hecho los deberes!",
+        "– Jaimito, dime 5 animales de África. – Cinco elefantes, profesora.",
+        "– Mamá, ¿puedo usar tu coche? – ¡No sin mi supervisión, Jaimito! – ¡Huy, perdón por no tener superpoderes como tú!",
+        "– Mamá, tengo una noticia buena y otra mala. – Dime la buena, Jaimito. – ¡He aprobado todas las asignaturas! – ¿Y la mala? – ¡Que es mentira!",
+        "– Jaimito, ¿qué harías si te estuvieras ahogando en alta mar? – ¡Llorar para desahogarme!",
+        "– ¿Cuántas anclas tiene un barco, Jaimito? – Once, profesora. – ¿Y por qué once? – Porque siempre oigo que dicen: Eleven anclas.",
+        "— Jaimito, ¿sabes inglés? — Yes. — Traduce por favor: 'Me gusta ir al gimnasio a tonificarme'. — I like gin tonic.",
+        "— Jaimito, conjuga el verbo andar. — Yo... yo ando... Tú... tú andas. — ¡Más deprisa! — Él corre, nosotros corremos, ellos corren...",
+        "– A ver Jaimito, dime una palabra que tenga muchas os, pero goloso no vale que ya la han dicho — ¡Muy fácil, seño! ¡GOOOOOOOOOL!",
+        "Mamá, mamá, en el colegio me dicen mono - ¡Ay hijo! No les hagas caso, ahora baja del árbol que vamos a comer",
+        "¿Por qué los carvernícolas se lanzaban piedras? Porque hacía guerras de almohadas",
+        "Otro día me acerqué corriendo a mi padre y le dije: —Mira, papá, qué metal más raro me he encontrado. —Es estaño. —¿A que sí? Raro, raro.",
+        " Mi hermano monta en bici desde que tenía tres años.—¡Jo, tío! Pues ya tiene que estar muy muy lejos",
+        "Buenas, creo que veo mal y vengo a que me hagan las pruebas - No hace falta, ve mal, tiene problemas de vista - ¿Cómo lo sabe? - Porque esto no es una óptica, es una panadería",
+        "— ¿Qué hacen dos fotos en una pelea? — Se revelan."
+      ];
+
+      function showQuote() {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        const number = randomIndex + 1;
+        document.getElementById("quote").textContent = number + ". " + quotes[randomIndex];
+      }
+    </script>
+  </body>
+</html>
+
